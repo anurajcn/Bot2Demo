@@ -53,8 +53,12 @@ dialog.matches(/^search/i, [
                     session.endDialog('More than 10 results were found. Please provide a more restrictive query.');
                 } else {
                     session.dialogData.property = null;
-                    var usernames = profiles.items.map(function (item) { return item.login });
-                    builder.Prompts.choice(session, 'What user do you want to load?', usernames);
+                    var usernames = profiles.items.map((item)=>{return item.login});
+                    builder.Prompts.choice(
+                        session,'Please choose a user',
+                        usernames,
+                        {listStyle:builder.ListStyle.button}
+                    );
                 }
             });
         }
